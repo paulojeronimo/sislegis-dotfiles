@@ -1,0 +1,22 @@
+[user]
+	email = pj@paulojeronimo.info
+	name = Paulo Jerônimo
+[color]
+	status = true
+	branch = true
+	interactive = true
+	diff = true
+	ui = true
+[push]
+	default = simple
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[core]
+	excludesfile = ~/.gitignore_global
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
