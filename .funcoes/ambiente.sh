@@ -4,7 +4,10 @@
 # Funções auxiliares para a montagem e uso de um ambiente
 
 # Exporta as variáveis default para o ambiente
-export_ambiente_default_dirs() {
+configurar_ambiente() {
+   source "$AMBIENTE_HOME"/ambiente.config &> /dev/null
+
+   # diretórios default
    export BACKUPS_DIR=${BACKUPS_DIR:-$AMBIENTE_HOME/backups}
    export CONFIGURACOES_DIR=${CONFIGURACOES_DIR:-$AMBIENTE_HOME/configuracoes}
    export DOCUMENTOS_DIR=${DOCUMENTOS_DIR:-$AMBIENTE_HOME/documentos}
@@ -15,6 +18,9 @@ export_ambiente_default_dirs() {
    export SCRIPTS_DIR=${SCRIPTS_DIR:-$AMBIENTE_HOME/scripts}
 
    export PATH=$SCRIPTS_DIR:$PATH
+
+   # opções de instalação
+   INSTALA_OPCS="${INSTALA_OPCS:---baixa-arquivo}"
 }
 
 # Carrega todas as configurações e funções do ambiente
@@ -80,3 +86,5 @@ salvar_instaladores() {
       popd &> /dev/null
    fi
 }
+
+# vim: set ts=3 sw=3 expandtab:
