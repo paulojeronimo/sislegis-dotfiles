@@ -43,6 +43,7 @@ funcoes() { verifica_var FUNCOES_DIR; cd "$FUNCOES_DIR" &> $OUT || falha; }
 instaladores() { verifica_var INSTALADORES_DIR; cd "$INSTALADORES_DIR" &> $OUT || falha; }
 projetos() { verifica_var PROJETOS_DIR; cd "$PROJETOS_DIR" &> $OUT || falha; }
 scripts() { verifica_var SCRIPTS_DIR; cd "$SCRIPTS_DIR" &> $OUT || falha; }
+ambiente() { home; }
 
 # Remove o cache local de instaladores
 remover_instaladores() { rm -rf "$INSTALADORES_DIR"; }
