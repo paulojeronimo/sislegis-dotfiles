@@ -1,0 +1,33 @@
+#!/bin/bash
+# Author: Paulo Jeronimo (paulojeoronimo@gmail.com)
+
+dotfiles=${dotfiles:-$HOME/Projects/github.com/paulojeronimo/dotfiles}
+vimdiff=${vimdiff:-false}
+
+[ -d "$dotfiles" ] || {
+    echo "Diretório \"$dotfiles\" não existe!"
+    exit
+}
+
+echo "Comparando arquivos deste diretório com os de \"$dotfiles\" ..."
+
+for f in $(find . -type f ! \( \
+    -name . -o \
+    -path './.git/*' \
+    \))
+do
+    if [ -f "$dotfiles/$f" ]
+    then
+        if [ "$(diff "$f" "$dotfiles/$f")" ]
+        then
+            echo "Arquivo $f diverge!"
+            $vimdiff && vim -d "$f" "$dotfiles/$f"
+        else
+            echo "Arquivo $f confere!"
+        fi
+    else
+        echo "Arquivo $f não existe em \"$dotfiles\"!"
+    fi
+done
+
+# vim: set ts=4 sw=4 expandtab:
